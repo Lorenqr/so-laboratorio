@@ -1,59 +1,107 @@
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
-Set-Location $scriptDir
-
 Add-Type -AssemblyName PresentationFramework
 
 [xml]$xaml = @"
-    <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            Title="Shell Grafico Taller 2" Height="240" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Title="Shell Grafico Taller 2"
+        Height="260" Width="460"
+        WindowStartupLocation="CenterScreen"
+        Background="#F7F9FC"
+        FontFamily="Segoe UI"
+        ResizeMode="NoResize">
+
     <Grid Margin="12">
         <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="SHELL GRAFICO" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+        <!-- Título -->
+        <TextBlock Text="SHELL GRAFICO PERSONALIZADO"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="#2D2D2D"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,12"/>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-        <Button Name="BtnBrowser" Width="110" Height="110" Margin="8" ToolTip="Abrir navegador">
-            <StackPanel>
-            <Viewbox Height="52" Width="52">
-                <Canvas Width="24" Height="24">
-                <Ellipse Width="24" Height="24" Fill="#FF4CAF50"/>
-                </Canvas>
-            </Viewbox>
-            <TextBlock Text="Navegador" HorizontalAlignment="Center" Margin="0,6,0,0"/>
-            </StackPanel>
-        </Button>
+        <!-- Botones principales -->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
-        <Button Name="BtnEditor" Width="110" Height="110" Margin="8" ToolTip="Abrir editor de texto">
-            <StackPanel>
-            <Viewbox Height="52" Width="52">
-                <Canvas Width="24" Height="24">
-                <Rectangle Width="24" Height="24" Fill="#FFFFC107"/>
-                </Canvas>
-            </Viewbox>
-            <TextBlock Text="Editor" HorizontalAlignment="Center" Margin="0,6,0,0"/>
-            </StackPanel>
-        </Button>
+            <!-- Navegador -->
+            <Button Name="BtnBrowser"
+                    Width="110"
+                    Height="110"
+                    Margin="8"
+                    Background="#D1E8FF"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    ToolTip="Abrir navegador"
+                    FontWeight="SemiBold">
+                <StackPanel>
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/6125/6125000.png"
+                            Width="52" Height="52" Margin="0,4"/>
+                        <TextBlock Text="Navegador"
+                                HorizontalAlignment="Center"
+                                Foreground="#2D2D2D"
+                                Margin="0,6,0,0"/>
+                </StackPanel>
+            </Button>
 
-        <Button Name="BtnTerminal" Width="110" Height="110" Margin="8" ToolTip="Abrir terminal">
-            <StackPanel>
-            <Viewbox Height="52" Width="52">
-                <Canvas Width="24" Height="24">
-                <Rectangle Width="24" Height="24" Fill="#FF03A9F4"/>
-                </Canvas>
-            </Viewbox>
-            <TextBlock Text="Terminal" HorizontalAlignment="Center" Margin="0,6,0,0"/>
-            </StackPanel>
-        </Button>
+            <!-- Editor -->
+            <Button Name="BtnEditor"
+                    Width="110"
+                    Height="110"
+                    Margin="8"
+                    Background="#FFEED0"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    ToolTip="Abrir editor de texto"
+                    FontWeight="SemiBold">
+                <StackPanel>
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/1686/1686886.png"
+                            Width="52" Height="52" Margin="0,4"/>
+                        <TextBlock Text="Editor"
+                                HorizontalAlignment="Center"
+                                Foreground="#2D2D2D"
+                                Margin="0,6,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Terminal -->
+            <Button Name="BtnTerminal"
+                    Width="110"
+                    Height="110"
+                    Margin="8"
+                    Background="#DFF6E6"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    ToolTip="Abrir terminal"
+                    FontWeight="SemiBold">
+                <StackPanel>
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/11892/11892583.png"
+                            Width="52" Height="52" Margin="0,4"/>
+                        <TextBlock Text="Terminal"
+                                HorizontalAlignment="Center"
+                                Foreground="#2D2D2D"
+                                Margin="0,6,0,0"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
 
-        <TextBlock Grid.Row="2" Text="Nota: Puedes cambiar el editor por otro ejecutable" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+        <!-- Nota -->
+        <TextBlock Grid.Row="2"
+                    Text="Nota: Puedes cambiar el editor por otro ejecutable"
+                    FontSize="11"
+                    Foreground="#6B7280"
+                    HorizontalAlignment="Center"
+                    Margin="0,12,0,0"/>
     </Grid>
-    </Window>
+</Window>
 "@
+
 
 # Cargar XAML
 $reader = (New-Object System.Xml.XmlNodeReader $xaml)
