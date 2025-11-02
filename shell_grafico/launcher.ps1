@@ -1,55 +1,58 @@
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+Set-Location $scriptDir
+
 Add-Type -AssemblyName PresentationFramework
 
 [xml]$xaml = @"
-<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        Title="Shell Gráfico" Height="240" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-  <Grid Margin="12">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
-      <RowDefinition Height="Auto"/>
-    </Grid.RowDefinitions>
+    <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            Title="Shell Grafico Taller 2" Height="240" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-    <TextBlock Text="SHELL GRAFICO PROYECTO" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+        <TextBlock Text="SHELL GRAFICO" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8"/>
 
-    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-      <Button Name="BtnBrowser" Width="110" Height="110" Margin="8" ToolTip="Abrir navegador">
-        <StackPanel>
-          <Viewbox Height="52" Width="52">
-            <Canvas Width="24" Height="24">
-              <Ellipse Width="24" Height="24" Fill="#FF4CAF50"/>
-            </Canvas>
-          </Viewbox>
-          <TextBlock Text="Navegador" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Button Name="BtnBrowser" Width="110" Height="110" Margin="8" ToolTip="Abrir navegador">
+            <StackPanel>
+            <Viewbox Height="52" Width="52">
+                <Canvas Width="24" Height="24">
+                <Ellipse Width="24" Height="24" Fill="#FF4CAF50"/>
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="Navegador" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Button>
+
+        <Button Name="BtnEditor" Width="110" Height="110" Margin="8" ToolTip="Abrir editor de texto">
+            <StackPanel>
+            <Viewbox Height="52" Width="52">
+                <Canvas Width="24" Height="24">
+                <Rectangle Width="24" Height="24" Fill="#FFFFC107"/>
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="Editor" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Button>
+
+        <Button Name="BtnTerminal" Width="110" Height="110" Margin="8" ToolTip="Abrir terminal">
+            <StackPanel>
+            <Viewbox Height="52" Width="52">
+                <Canvas Width="24" Height="24">
+                <Rectangle Width="24" Height="24" Fill="#FF03A9F4"/>
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="Terminal" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Button>
         </StackPanel>
-      </Button>
 
-      <Button Name="BtnEditor" Width="110" Height="110" Margin="8" ToolTip="Abrir editor de texto">
-        <StackPanel>
-          <Viewbox Height="52" Width="52">
-            <Canvas Width="24" Height="24">
-              <Rectangle Width="24" Height="24" Fill="#FFFFC107"/>
-            </Canvas>
-          </Viewbox>
-          <TextBlock Text="Editor" HorizontalAlignment="Center" Margin="0,6,0,0"/>
-        </StackPanel>
-      </Button>
-
-      <Button Name="BtnTerminal" Width="110" Height="110" Margin="8" ToolTip="Abrir terminal">
-        <StackPanel>
-          <Viewbox Height="52" Width="52">
-            <Canvas Width="24" Height="24">
-              <Rectangle Width="24" Height="24" Fill="#FF03A9F4"/>
-            </Canvas>
-          </Viewbox>
-          <TextBlock Text="Terminal" HorizontalAlignment="Center" Margin="0,6,0,0"/>
-        </StackPanel>
-      </Button>
-    </StackPanel>
-
-    <TextBlock Grid.Row="2" Text="Nota: Puedes cambiar el editor por otro ejecutable" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
-  </Grid>
-</Window>
+        <TextBlock Grid.Row="2" Text="Nota: Puedes cambiar el editor por otro ejecutable" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+    </Grid>
+    </Window>
 "@
 
 # Cargar XAML
