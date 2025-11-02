@@ -1,12 +1,8 @@
-# Launcher minimalista en PowerShell (WPF)
-# Guarda este archivo en la carpeta punto2 y ejecútalo con: powershell -ExecutionPolicy Bypass -File .\launcher.ps1
-# Recomendado: ejecutar PowerShell en modo x86 o x64 según tu sistema (por lo general el PowerShell normal funciona).
-
 Add-Type -AssemblyName PresentationFramework
 
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        Title="Shell Gráfico - Punto 2" Height="240" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Shell Gráfico" Height="240" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
   <Grid Margin="12">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
@@ -14,7 +10,7 @@ Add-Type -AssemblyName PresentationFramework
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
-    <TextBlock Text="Entorno gráfico minimalista" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+    <TextBlock Text="SHELL GRAFICO PROYECTO" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8"/>
 
     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
       <Button Name="BtnBrowser" Width="110" Height="110" Margin="8" ToolTip="Abrir navegador">
@@ -51,7 +47,7 @@ Add-Type -AssemblyName PresentationFramework
       </Button>
     </StackPanel>
 
-    <TextBlock Grid.Row="2" Text="Nota: Puedes cambiar el editor por otro ejecutable (ej. code)" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+    <TextBlock Grid.Row="2" Text="Nota: Puedes cambiar el editor por otro ejecutable" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
   </Grid>
 </Window>
 "@
@@ -86,8 +82,8 @@ function Open-Editor {
         if ($editor) {
             Start-Process -FilePath $editor -ArgumentList $pathArg
         } else {
-            # Abrir Notepad por defecto
-            Start-Process notepad.exe
+            # Abrir Notepad++ por defecto
+            Start-Process notepad++.exe
         }
     } catch {
         [System.Windows.MessageBox]::Show("No se pudo abrir el editor: $_","Error",[System.Windows.MessageBoxButton]::OK,[System.Windows.MessageBoxImage]::Error)
@@ -115,7 +111,7 @@ $btnBrowser.Add_Click({ Open-Browser })
 $btnEditor.Add_Click({ Open-Editor -editor "notepad++" -pathArg "." })
 
 #Boton Terminal PowerShell
-$btnTerminal.Add_Click({ Open-Terminal -shell "powershell.exe" -args "-NoExit" })
+$btnTerminal.Add_Click({ Open-Terminal -shell $null })
 
 # Mostrar ventana (modal)
 $window.ShowDialog() | Out-Null
